@@ -23,5 +23,21 @@ if ! touch "$REPORT" 2>/dev/null; then
     exit 1
 fi
 
-grep -aiE "$KEYWORDS" "$LOGFILE" > "$REPORT"
-echo "Готово: $REPORT, найдено строк: $(wc -l < "$REPORT")"
+TOTAL=$(grep -aicE "$KEYWORDS" "$LOGFILE")
+
+{
+    echo "Отчет по файлу: $LOGFILE"
+    echo "Дата: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "Найдено строк: $TOTAL"
+    for word in ${KEYWORDS//|/ }; do
+        echo "  $word: $(grep -aic "$word" "$LOGFILE")"
+    done
+    echo
+    if [ "$TOTAL" -eq 0 ]; then
+        echo "Совпадений не найдено"
+    else
+        grep -aiE "$KEYWORDS" "$LOGFILE"
+    fi
+} > "$REPORT"
+
+echo "Готово: $REPORT, найдено строк: $TOTAL"
