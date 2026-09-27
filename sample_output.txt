@@ -1,0 +1,12 @@
+Отчет по файлу: /var/log/syslog
+Дата: 2026-09-27 22:03:27
+Найдено строк: 17
+  error: 5
+  fail: 12
+
+Sep 27 19:02:29 sysadmin-host systemd[1]: Condition check resulted in Process error reports when automatic reporting is enabled (file watch) being skipped.
+Sep 27 19:02:29 sysadmin-host systemd[1]: Condition check resulted in Process error reports when automatic reporting is enabled (timer based) being skipped.
+Sep 27 19:02:29 sysadmin-host systemd[1]: Started Download data for packages that failed at package install time.
+Sep 27 19:02:29 sysadmin-host systemd[1]: Starting GRUB failed boot detection...
+Sep 27 19:02:29 sysadmin-host systemd[1]: Finished GRUB failed boot detection.
+Sep 27 19:02:29 sysadmin-host kernel: [    0.050742] Failed to register legacy timer interrupt
