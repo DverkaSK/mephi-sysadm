@@ -1,0 +1,13 @@
+[Unit]
+Description=my-app service
+After=docker.service raid-lab.service
+Requires=docker.service
+Wants=raid-lab.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a my-app
+ExecStop=/usr/bin/docker stop my-app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
