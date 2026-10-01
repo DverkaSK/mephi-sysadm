@@ -1,11 +1,13 @@
 #!/bin/bash
 
-LOGFILE="${1:-/var/log/syslog}"
 REPORT="report.txt"
 KEYWORDS="error|fail"
 
-if [ -z "$1" ] && [ ! -f "$LOGFILE" ]; then
-    LOGFILE="/var/log/auth.log"
+if [ -n "$1" ]; then
+    LOGFILE="$1"
+elif [ -z "$LOGFILE" ]; then
+    LOGFILE="/var/log/syslog"
+    [ -f "$LOGFILE" ] || LOGFILE="/var/log/auth.log"
 fi
 
 if [ ! -f "$LOGFILE" ]; then

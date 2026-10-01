@@ -1,0 +1,7 @@
+.git
+*.md
+*.txt
+deploy
+storage
+bootstrap.sh
+docker-compose.yml
