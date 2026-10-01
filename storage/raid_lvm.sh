@@ -27,7 +27,15 @@ LOOP2=$(attach "$DIR/disk2.img")
 LOOP3=$(attach "$DIR/disk3.img")
 echo "loop-устройства: $LOOP1 $LOOP2 $LOOP3"
 
-if ! mdadm --detail /dev/md0 >/dev/null 2>&1; then
+udevadm settle
+
+AUTO=$(awk '/^md/ && /loop/ {print "/dev/"$1}' /proc/mdstat | grep -v '^/dev/md0$' || true)
+for md in $AUTO; do
+    mdadm --stop "$md"
+done
+
+if ! grep -q '^md0 : active' /proc/mdstat; then
+    mdadm --stop /dev/md0 >/dev/null 2>&1 || true
     if mdadm --examine "$LOOP1" >/dev/null 2>&1; then
         mdadm --assemble /dev/md0 "$LOOP1" "$LOOP2"
     else
