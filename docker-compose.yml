@@ -1,5 +1,7 @@
 name: my-app
 
+name: my-app
+
 services:
   my-app:
     build: .
