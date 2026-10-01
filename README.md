@@ -36,7 +36,7 @@ sudo ./bootstrap.sh
 
 ```bash
 docker build -t my-script .
-docker run --rm -v /var/log:/var/log:ro my-script
+docker run --rm -v /var/log:/var/log:ro my-script /usr/local/bin/script.sh
 cat /proc/mdstat
 sudo lvs && sudo vgs
 df -h /mnt/raid /mnt/logs
