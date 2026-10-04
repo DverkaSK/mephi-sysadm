@@ -6,4 +6,5 @@ COPY script.sh /usr/local/bin/script.sh
 RUN chmod +x /usr/local/bin/script.sh
 ENV INTERVAL=300 PYTHONUNBUFFERED=1
 EXPOSE 8080
+STOPSIGNAL SIGINT
 CMD ["/bin/bash", "-c", "while true; do /usr/local/bin/script.sh; sleep \"$INTERVAL\"; done & exec python3 -m http.server 8080"]
